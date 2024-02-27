@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <input type="text" id="input">
+        <br>
+        <div class="btn">
+            <button onclick="sum()">sum</button>
+            <button onclick="fetchFact()">fact</button>
+            <button onclick="fetchRev()">rev</button>
+        </div>
+
+    </div>
+    <br>
+
+    <div class="result" id="result">
+
+    </div>
+    <script>
+        const fetchFact = async () => {
+            try {
+                const v = input.value;
+                const response = await fetch(`http://localhost:4090/fact?value=${v}`);
+                if (!response.ok) {
+                    throw new Error(' Network response was not ok ');
+                }
+                const data = await response.text();
+                console.log(data);
+                result.textContent = data;
+
+            } catch (error) {
+                console.error(' there was a problem : ', error);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
