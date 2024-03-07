@@ -1,14 +1,9 @@
-
-import {lazy} from "react";
-
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import H from "./components/Home";
-// import  Dashboard  from "./components/Dashboard";
-// import  Dashboard  from React.lazy(()=> "./components/Dashboard");
-const Dashboard= lazy(()=> "./components/Dashboard");
+// Correct lazy loading syntax for Dashboard
+const Dashboard = lazy(() => import("./components/Dashboard"));
 import { Login } from "./pages/Login";
-// const DashBoard = React.lazy(()=>import("./components/Dashboard"));
-
 
 function App() {
   return (
@@ -18,7 +13,15 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/h" element={<H />} />
-          <Route path="/d" element={<Dashboard />} />
+          {/* Wrap Dashboard inside Suspense and provide a fallback */}
+          <Route
+            path="/d"
+            element={
+              <Suspense fallback={<div>Loading Dashboard...</div>}>
+                <Dashboard />
+              </Suspense>
+            }
+          />
           <Route path="/login" element={<Login />} />
         </Routes>
       </>
