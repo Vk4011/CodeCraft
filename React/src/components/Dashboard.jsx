@@ -1,4 +1,4 @@
-export function Dashboard() {
+export default function Dashboard() {
   return (
     <>
       <div className="block mx-auto h-screen flex items-center justify-center flex-col">

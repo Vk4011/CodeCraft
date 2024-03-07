@@ -1,7 +1,14 @@
+
+import {lazy} from "react";
+
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import H from "./components/Home";
-import { Dashboard } from "./components/Dashboard";
+// import  Dashboard  from "./components/Dashboard";
+// import  Dashboard  from React.lazy(()=> "./components/Dashboard");
+const Dashboard= lazy(()=> "./components/Dashboard");
 import { Login } from "./pages/Login";
+// const DashBoard = React.lazy(()=>import("./components/Dashboard"));
+
 
 function App() {
   return (
